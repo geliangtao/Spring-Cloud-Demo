@@ -1,0 +1,41 @@
+server:
+  port: 8888
+
+
+spring:
+  application:
+    name: consumer-depart
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7777/eureka
+
+#  开启 Feign 对 Hystrix 的支持
+feign:
+  hystrix:
+    enabled: true
+
+#  设置服务熔断时限，默认为 5000 毫秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+
+info:
+  app.name: ${spring.application.name}
+  app.desc: spring cloud consumer
+  app.fixs.url: /fixRest/consumer/depart
+  app.fixs.desc: fix rest template quest
+  app.loadrest.url: /loadBalancedRest/consumer/depart
+  app.loadrest.desc: loadBalanced rest template quest
+  app.feign.url: /openfeign/depart
+  app.feign.desc: openfeign quest
+  app.feign.url.hystrix: /openfeign/depart/save
+  app.feign.desc.hystrix: save method use hystrix
+  app.hystrixrest.url: /hytrixLBRest/consumer/depart/save
+  app.hystrixrest.desc: hystrix loadBalanced rest template quest

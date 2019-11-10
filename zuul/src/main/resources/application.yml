@@ -1,0 +1,22 @@
+server:
+  port: 6666
+
+spring:
+  application:
+    name: zuul-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7777/eureka
+
+info:
+  app.url: http://localhost:6666
+  app.desc: zuul gateway application
+  app.access.method: zuulurl+micro service name + url
+  app.access.method.eg: http://localhost:6666/consumer-depart/openfeign/depart/save
+
+zuul:
+  routes:
+    depart.serviceId: consumer-depart
+    depart.path: /cd/**

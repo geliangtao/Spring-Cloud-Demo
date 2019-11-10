@@ -1,0 +1,41 @@
+server:
+  port: 9998
+
+spring:
+  jpa:
+    # 应用启动时是否自动建表，默认为false
+    generate-ddl: true
+    # 是否在控制台显示SQL语句，默认为false
+    show-sql: true
+    # 设置应用启动时不重新建表
+    hibernate:
+      ddl-auto: none
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///test?useUnicode=true&amp;characterEncoding=utf8
+    username: root
+    password: root
+  application:
+    name: provider-depart
+
+logging:
+  # 设置日志输出格式
+  pattern:
+    console: level-%level %msg%n
+  level:
+    root: info   # Spring Boot启动时的日志级别
+    org.hibernate: info  # Hibernate运行日志级别
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.type.descriptor.sql.BasicExtractor: trace
+    com.glt.provider: debug
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7777/eureka
+
+info:
+  app.name: ${spring.application.name}
+  app.desc: spring cloud provider
+  app.url: /provider/depart
